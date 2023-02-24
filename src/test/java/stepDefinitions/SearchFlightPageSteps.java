@@ -20,12 +20,12 @@ public class SearchFlightPageSteps {
 
 	HomePage hPage;
 	WebDriver driver;
-	SearchResultsPage searchPage;
 	String fromCity;
 	String toCity;
 	String fromDate;
 	String toDate;
 	String flightDetails = "";
+	SearchResultsPage searchPage;
 
 	@Given("The {string} browser is open")
 	public void the_browser_is_open(String browser) {
@@ -80,12 +80,13 @@ public class SearchFlightPageSteps {
 			this.toCity = toCity;
 		}
 		hPage.enterToCity(this.toCity, toNearbyAirport);
-
 	}
 
 	@When("User selects departure and return dates")
 	public void select_departure_and_return_dates(DataTable table) {
 
+//		String fromDate = dates.get(0);
+//		String toDate = dates.get(1);
 		String fromDate = table.cell(1, 0);
 		String toDate = table.cell(1, 1);
 

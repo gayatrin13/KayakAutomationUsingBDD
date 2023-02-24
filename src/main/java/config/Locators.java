@@ -3,7 +3,7 @@ package config;
 public class Locators {
 
 	/* Home Page Object Repository */
-	public static final String TO_CITY = "//input[@aria-label='Flight destination input']";
+	public final static String TO_CITY = "//input[@aria-label='Flight destination input']";
 	public static final String FROM_CITY = "//input[@aria-label='Flight origin input']";
 	public static final String START_DATE = "//span[@aria-label='Start date calendar input']/span[@class='sR_k-value']";
 	public static final String END_DATE = "//span[@aria-label='End date calendar input']/span[@class='sR_k-value']";

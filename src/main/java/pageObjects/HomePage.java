@@ -113,7 +113,8 @@ public class HomePage {
 		fromCity.clear();
 		try {
 			driver.findElement(By.xpath(Locators.CLEAR_CITY_FIELDS)).click();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			System.err.println("From city textbox is empty");
 		}
 		toCity.clear();
