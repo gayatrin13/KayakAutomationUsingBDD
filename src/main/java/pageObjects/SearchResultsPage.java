@@ -24,11 +24,14 @@ public class SearchResultsPage {
 	@FindBy(xpath = Locators.FIRST_FLIGHT_DIV + Locators.HIDDEN_FLIGHT_DETAILS_DIV)
 	WebElement divClicked;
 
-	@FindBy(xpath = Locators.FIRST_FLIGHT_DIV + Locators.VALIDATE_ORIGIN_AIRPORT_NAME)
-	WebElement validate_origin_airport;
+	@FindBy(xpath = Locators.FIRST_FLIGHT_DIV + Locators.VALIDATE_AIRPORT_NAMES)
+	List<WebElement> originDestinationAirportNames;
 
-	@FindBy(xpath = Locators.FIRST_FLIGHT_DIV + Locators.VALIDATE_DESTINATION_AIRPORT_NAME)
-	WebElement validate_destination_airport;
+//	@FindBy(xpath = Locators.FIRST_FLIGHT_DIV + Locators.VALIDATE_ORIGIN_AIRPORT_NAME)
+//	WebElement validate_origin_airport;
+//
+//	@FindBy(xpath = Locators.FIRST_FLIGHT_DIV + Locators.VALIDATE_DESTINATION_AIRPORT_NAME)
+//	WebElement validate_destination_airport;
 
 	@FindBy(xpath = Locators.FIRST_FLIGHT_DIV + Locators.VALIDATE_FLIGHT_DEPART_TIME)
 	WebElement validate_flightDepartTime;
@@ -68,18 +71,20 @@ public class SearchResultsPage {
 		} catch (Exception e) {
 			System.err.println("No popup showed");
 		}
-		WaitHandler.waitUntilRefreshed(driver, firstFlightFound);
-
+//		WaitHandler.waitUntilRefreshed(driver, firstFlightFound);
+		WaitHandler.waitUntilElementClickable(driver, firstFlightFound);
 		Actions act = new Actions(driver);
-		act.moveToElement(firstFlightFound).scrollToElement(firstFlightFound).build().perform();
-		Util.javaScriptExecutor(driver, firstFlightFound);
+		act.moveToElement(firstFlightFound).click().build().perform();
+//		Util.javaScriptExecutor(driver, firstFlightFound);
 	}
 
 	public void validateFlightOriginCity(String origin) {
 		System.out.println("from city " + origin);
 
-		String originAirport = validate_origin_airport.getAttribute("title") + " - "
-				+ validate_origin_airport.getText();
+		String originAirport = originDestinationAirportNames.get(0).getAttribute("title") + " - "
+				+ originDestinationAirportNames.get(0).getText();
+//		String originAirport = validate_origin_airport.getAttribute("title") + " - "
+//				+ validate_origin_airport.getText();
 		System.out.println("validate origin airport : " + originAirport);
 		Assert.assertTrue(originAirport.contains(origin), "The actual and expected Origin city doesn't match ");
 	}
@@ -87,8 +92,8 @@ public class SearchResultsPage {
 	public void validateFlightDestinationCity(String destination) {
 		System.out.println(" toCity : " + destination);
 
-		String destinationAirport = validate_destination_airport.getAttribute("title") + " - "
-				+ validate_destination_airport.getText();
+		String destinationAirport = originDestinationAirportNames.get(1).getAttribute("title") + " - "
+				+ originDestinationAirportNames.get(1).getText();
 		System.out.println("validate destination airport : " + destinationAirport);
 
 		Assert.assertTrue(destinationAirport.contains(destination),

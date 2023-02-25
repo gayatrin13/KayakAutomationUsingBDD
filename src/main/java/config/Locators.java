@@ -23,7 +23,7 @@ public class Locators {
 	public static final String CLOSE_SIGN_IN_POPUP = "//div[contains(@aria-label,'Close')]";
 
 	/* Search Results Page Object Repository */
-	public static final String FIRST_FLIGHT_DIV = "//div[@id='searchResultsList']/descendant::div[@data-resultid][2]";
+	public static final String FIRST_FLIGHT_DIV = "//div[@class='resultsList' or @aria-label ='Flight Search Results']/descendant::div[@data-resultid][2]";
 	public static final String HIDDEN_FLIGHT_DETAILS_DIV = "/descendant::div[contains(@class,'o-C7') and @aria-hidden]";
 	public static final String VALIDATE_FLIGHT_DEPART_TIME = "/descendant::span[contains(text(),'Depart')]";
 
@@ -31,6 +31,7 @@ public class Locators {
 	public static final String VALIDATE_ORIGIN_AIRPORT_NAME = "/descendant::div[contains(@id,'leg-0-origin')]"; // "/descendant::span[@dir='auto']";
 	public static final String VALIDATE_DESTINATION_AIRPORT_NAME = "/descendant::div[contains(@id,'leg-0-destination')]"; // "/descendant::span[@dir='auto']";
 
+	public static final String VALIDATE_AIRPORT_NAMES="/descendant::div[@title]";
 	public static final String CLOSE_POPUP = "//div[@aria-label='Close' and @role='button']/child::span";
 	public static final String CLEAR_CITY_FIELDS = "//div[@class='vvTc-item-close']";
 
